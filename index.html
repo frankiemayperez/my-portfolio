@@ -425,7 +425,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
       var gmail = 'https://mail.google.com/mail/?view=cm&fs=1' +
         '&to=' + encodeURIComponent('perezfmay@gmail.com') +
         '&su=' + encodeURIComponent('Message from ' + n) +
-        '&body=' + encodeURIComponent(m + '\n\nFrom: ' + n + ' (' + em + ')');
+        '&body=' + encodeURIComponent(m);
       var w = window.open(gmail, '_blank', 'noopener');
       if (!w) location.href = gmail;
       return;
