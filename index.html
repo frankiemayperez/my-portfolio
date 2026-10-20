@@ -421,9 +421,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
       var n = document.getElementById('name').value;
       var em = document.getElementById('email').value;
       var m = document.getElementById('msg').value;
-      status.textContent = 'Opening your email app...';
-      location.href = 'mailto:perezfmay@gmail.com?subject=' + encodeURIComponent('Message from ' + n) +
+      status.textContent = 'Opening Gmail...';
+      var gmail = 'https://mail.google.com/mail/?view=cm&fs=1' +
+        '&to=' + encodeURIComponent('perezfmay@gmail.com') +
+        '&su=' + encodeURIComponent('Message from ' + n) +
         '&body=' + encodeURIComponent(m + '\n\nFrom: ' + n + ' (' + em + ')');
+      var w = window.open(gmail, '_blank', 'noopener');
+      if (!w) location.href = gmail;
       return;
     }
     btn.disabled = true; btn.textContent = 'Sending...';
