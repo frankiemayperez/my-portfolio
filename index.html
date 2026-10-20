@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frankie May Perez | Virtual Assistant</title>
+<meta name="description" content="Virtual Assistant with BPO experience in real-time reporting, customer support, content moderation and admin work. Based in Davao City, Philippines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap">
+<style>
+:root{
+  --mist:#F6F1FA; --plum:#2A1B3D; --violet:#6E4FA3; --lavender:#E4D8F2; --peach:#F7C6B2;
+  --muted:#5B4E6B; --line:#D6C9E6;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Manrope',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--mist);color:var(--plum);font-family:var(--sans);font-size:17px;line-height:1.65}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background-image:radial-gradient(#CDBFE0 1.6px,transparent 1.6px);background-size:30px 30px;opacity:.55;pointer-events:none}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.05}
+p{margin:0}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px}
+h2{font-size:clamp(36px,5vw,54px);margin-bottom:40px}
+
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.page{--d1:var(--lavender);--d2:var(--peach);display:none;position:relative;isolation:isolate;overflow:hidden;padding:72px 0 88px;min-height:65vh}
+.page.active{display:block}
+.page::before{content:"";position:absolute;z-index:-1;width:400px;height:400px;border-radius:50%;background:var(--d1);opacity:.6;top:-130px;right:-110px}
+.page::after{content:"";position:absolute;z-index:-1;width:280px;height:280px;border-radius:50%;border:38px solid var(--d2);opacity:.5;bottom:-100px;left:-80px}
+
+header .wrap{display:flex;flex-wrap:wrap;gap:14px 32px;justify-content:space-between;align-items:center;padding-top:24px;padding-bottom:24px}
+.logo{font-family:var(--serif);font-size:26px}
+nav{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;font-weight:500;font-size:15px}
+nav a:not(.btn){display:inline-flex;align-items:center;gap:7px;padding:6px 2px}
+nav a:not(.btn):hover{color:var(--violet)}
+nav a[aria-current="page"]:not(.btn){color:var(--violet);box-shadow:0 2px 0 var(--violet)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--plum);color:#fff;padding:13px 26px;border-radius:999px;border:2px solid var(--plum);font:inherit;font-weight:600;font-size:15px;cursor:pointer;min-height:48px;transition:background .15s,color .15s}
+.btn:hover{background:var(--violet);border-color:var(--violet)}
+.btn.ghost{background:transparent;color:var(--plum)}
+.btn.ghost:hover{background:var(--plum);color:#fff;border-color:var(--plum)}
+
+/* HOME (no photo) */
+#home{--d1:var(--peach);--d2:var(--lavender);padding:56px 0 100px}
+.hero-text{max-width:720px;display:flex;flex-direction:column;gap:26px}
+.hero-text h1{font-size:clamp(54px,9vw,104px);letter-spacing:-0.01em}
+.hero-text h1 em{color:var(--violet)}
+.hero-text .role{font-family:var(--serif);font-size:clamp(24px,3vw,32px);color:var(--muted)}
+.hero-text p.lead{max-width:540px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+
+#about{--d1:var(--violet);--d2:#4A3470;background:var(--plum);color:#F6F1FA}
+#about::before{opacity:.35}
+#about h2{color:#fff;margin-bottom:24px}
+#about .copy{display:flex;flex-direction:column;gap:18px;font-size:20px;color:#E4D8F2;max-width:680px}
+
+#services{--d1:var(--peach);--d2:var(--lavender)}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 56px}
+.service{border-top:1px solid var(--line);padding:26px 0 30px;display:flex;gap:18px}
+.service .badge{flex:none;width:54px;height:54px;border-radius:50%;background:var(--lavender);color:var(--violet);display:flex;align-items:center;justify-content:center}
+.service .badge .ic{width:26px;height:26px}
+.service h3{font-size:30px;margin-bottom:8px}
+.service p{color:var(--muted);max-width:420px}
+
+#experience{--d1:var(--lavender);--d2:var(--peach);background:#fff}
+.job{border-top:1px solid var(--line);padding:30px 0}
+.job:first-of-type{border-top:2px solid var(--plum)}
+.job h3{font-size:32px;margin-bottom:2px}
+.job .org{color:var(--muted);margin-bottom:12px;font-weight:500}
+.job ul{margin:0;padding-left:20px;color:#3F3350}
+.job li{margin-bottom:6px;max-width:700px}
+.job .note{font-style:italic;color:var(--muted);margin-bottom:10px;max-width:700px}
+
+#skills{--d1:var(--lavender);--d2:var(--peach)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:36px 48px}
+.skills h3{font-size:26px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0;list-style:none}
+.chips li{background:var(--lavender);padding:8px 16px;border-radius:999px;font-size:15px;font-weight:500}
+
+#recognition{--d1:var(--peach);--d2:#fff;background:var(--lavender)}
+.rec{display:flex;flex-wrap:wrap;gap:40px 72px}
+.rec>div{flex:1 1 320px}
+.rec h2{font-size:clamp(32px,4vw,44px);margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.rec h2 .ic{width:34px;height:34px;color:var(--violet)}
+.rec ul{list-style:none;margin:0;padding:0}
+.rec li{border-top:1px solid #B9A6D6;padding:14px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
+.rec li span{color:var(--muted)}
+
+#contact{--d1:var(--lavender);--d2:var(--peach)}
+#contact .wrap{display:flex;flex-wrap:wrap;gap:56px}
+.contact-info{flex:1 1 380px;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.contact-info h2{margin:0}
+.contact-info p{color:var(--muted);max-width:460px}
+.details{width:100%;margin:6px 0 0;display:flex;flex-direction:column;gap:14px}
+.details div{border-top:1px solid var(--line);padding-top:12px;display:flex;gap:14px;align-items:flex-start}
+.details .ic{color:var(--violet);margin-top:3px}
+.details dt{font-size:14px;color:var(--muted)}
+.details dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.details a:hover{color:var(--violet)}
+form{flex:1 1 380px;background:#fff;border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:18px;box-shadow:12px 12px 0 var(--peach)}
+form h3{font-size:34px}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font-size:14px;font-weight:600}
+input,textarea{padding:14px 16px;border:1.5px solid #BBAAD3;border-radius:14px;font:inherit;background:var(--mist);width:100%}
+textarea{resize:vertical}
+.fine{font-size:14px;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+
+@media (max-width:700px){
+  .wrap{padding:0 20px}
+  .page{padding:48px 0 64px}
+  #home{padding:40px 0 72px}
+  .page::before{width:260px;height:260px;top:-90px;right:-90px}
+  .page::after{width:180px;height:180px;border-width:26px;bottom:-70px;left:-60px}
+  form{padding:24px}
+  .service{flex-direction:column;gap:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn{transition:none}
+}
+</style>
+<noscript><style>.page{display:block !important;min-height:0}</style></noscript>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M3 13h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 01-8 0z"/><path d="M8 6H4v2a4 4 0 004 4"/><path d="M16 6h4v2a4 4 0 01-4 4"/><path d="M12 14v4"/><path d="M8 21h8"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1-2 2-5 2"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2-.6-1.2.2-2.5 1.6-2.5H17a4 4 0 004-4c0-5-4-9.5-9-9.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#home">Frankie May Perez</a>
+    <nav aria-label="Main">
+      <a href="#home"><svg class="ic"><use href="#i-home" xlink:href="#i-home"/></svg>Home</a>
+      <a href="#about"><svg class="ic"><use href="#i-user" xlink:href="#i-user"/></svg>About</a>
+      <a href="#services"><svg class="ic"><use href="#i-briefcase" xlink:href="#i-briefcase"/></svg>Services</a>
+      <a href="#experience"><svg class="ic"><use href="#i-clock" xlink:href="#i-clock"/></svg>Experience</a>
+      <a href="#skills"><svg class="ic"><use href="#i-star" xlink:href="#i-star"/></svg>Skills</a>
+      <a href="#recognition"><svg class="ic"><use href="#i-trophy" xlink:href="#i-trophy"/></svg>Awards</a>
+      <a class="btn" href="#contact"><svg class="ic"><use href="#i-mail" xlink:href="#i-mail"/></svg>Hire me</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="page active" id="home">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1>Frankie <em>May</em> Perez</h1>
+        <div class="role">Virtual Assistant</div>
+        <p class="lead">I keep things organized, on schedule and accurate. With BPO experience in real-time reporting, customer support and admin, I'm ready to take work off your plate full-time.</p>
+        <div class="actions">
+          <a class="btn" href="#contact">Work with me</a>
+          <a class="btn ghost" href="#experience">See my experience</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="page" id="about">
+    <div class="wrap">
+      <h2>About me</h2>
+      <div class="copy">
+        <p>I'm a goal-driven BPO professional from Davao City with experience in real-time analysis, customer service, healthcare support and content moderation.</p>
+        <p>I'm used to monitoring live operations, handling sensitive information and delivering accurate, timely reports in fast-paced teams. People who've worked with me know me for adaptability and analytical thinking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="page" id="services">
+    <div class="wrap">
+      <h2>How I can help</h2>
+      <div class="services">
+        <div class="service">
+          <div class="badge"><svg class="ic"><use href="#i-headset" xlink:href="#i-headset"/></svg></div>
+          <div><h3>Customer Support</h3><p>Phone, chat and email support, from refunds and subscriptions to complex escalations.</p></div>
+        </div>
+        <div class="service">
+          <div class="badge"><svg class="ic"><use href="#i-calendar" xlink:href="#i-calendar"/></svg></div>
+          <div><h3>Email &amp; Calendar</h3><p>Inbox management, scheduling and keeping your day running on time.</p></div>
+        </div>
+        <div class="service">
+          <div class="badge"><svg class="ic"><use href="#i-folder" xlink:href="#i-folder"/></svg></div>
+          <div><h3>Admin &amp; Data Entry</h3><p>Accurate encoding, record keeping and organized files and documentation.</p></div>
+        </div>
+        <div class="service">
+          <div class="badge"><svg class="ic"><use href="#i-clock" xlink:href="#i-clock"/></svg></div>
+          <div><h3>Reporting &amp; Scheduling</h3><p>Real-time monitoring, hourly and intraday reports, and staffing adjustments.</p></div>
+        </div>
+        <div class="service">
+          <div class="badge"><svg class="ic"><use href="#i-shield" xlink:href="#i-shield"/></svg></div>
+          <div><h3>Content Moderation</h3><p>Policy-based review and tagging of ads and content to keep platforms safe.</p></div>
+        </div>
+        <div class="service">
+          <div class="badge"><svg class="ic"><use href="#i-palette" xlink:href="#i-palette"/></svg></div>
+          <div><h3>Basic Design</h3><p>Simple, clean graphics and edits using Canva, Lightroom and CapCut.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="page" id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+
+      <div class="job">
+        <h3>Real-Time Analyst (WFM)</h3>
+        <div class="org">Concentrix</div>
+        <p class="note">Hybrid role: on-site with occasional remote work. Maintained strong self-discipline, accountability and productivity when working from home.</p>
+        <ul>
+          <li>Monitored live queues in real time to ensure service level (SL) targets were consistently met.</li>
+          <li>Conducted root cause analysis when SL targets were missed and reported findings to operations leaders and clients.</li>
+          <li>Identified, tracked and reported issues such as tool and system outages to minimize downtime.</li>
+          <li>Sent hourly reports via email and Viber, including absenteeism, intraday performance, volume variance and BCP.</li>
+          <li>Adjusted staffing and schedules based on real-time data to maintain optimal coverage.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Admin Assistant</h3>
+        <div class="org">(On-the-Job Training for Bachelor's Degree)</div>
+        <ul>
+          <li>Provided clerical and administrative support to barangay officials and staff.</li>
+          <li>Encoded and organized resident records and files.</li>
+          <li>Helped keep documentation accurate and up to date in line with barangay procedures.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Email &amp; Chat Support</h3>
+        <div class="org">Concentrix</div>
+        <ul>
+          <li>Provided chat and email support to customers of a major technology platform.</li>
+          <li>Assisted with in-app purchases, subscriptions, refunds, promotions and troubleshooting.</li>
+          <li>Resolved concerns accurately and efficiently while maintaining high customer satisfaction.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Content Moderator</h3>
+        <div class="org">Concentrix</div>
+        <ul>
+          <li>Reviewed and moderated ads on a leading social media platform to ensure compliance with community guidelines.</li>
+          <li>Tagged content by policy violation, determining whether ads or videos were safe for users.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Subject Matter Expert (SME)</h3>
+        <div class="org">Teleperformance</div>
+        <ul>
+          <li>Trained and supported new agents, guiding them in process excellence and standards.</li>
+          <li>Helped resolve complex customer issues and escalations.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Customer Support (Healthcare Voice Account)</h3>
+        <div class="org">Teleperformance</div>
+        <ul>
+          <li>Supported dental and medical insurance accounts, speaking directly with healthcare providers using tools such as Five9.</li>
+          <li>Verified patient insurance eligibility and checked pre-authorization status.</li>
+          <li>Reviewed claim approvals and denials, explained denial reasons and processed claim reworks accurately.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="page" id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>
+          <h3>Support &amp; Admin</h3>
+          <ul class="chips">
+            <li>Customer Service</li><li>Email &amp; Calendar Management</li><li>Data Entry</li><li>Administrative Tasks</li><li>Healthcare Insurance Processes</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Operations</h3>
+          <ul class="chips">
+            <li>Workforce Management</li><li>Real-Time Reporting</li><li>Content Moderation</li><li>Bookkeeping Basics</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tools</h3>
+          <ul class="chips">
+            <li>Microsoft Office</li><li>Google Workspace</li><li>Excel / Google Sheets</li><li>Canva</li><li>Lightroom</li><li>CapCut</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & AWARDS -->
+  <section class="page" id="recognition">
+    <div class="wrap">
+      <div class="rec">
+        <div>
+          <h2><svg class="ic"><use href="#i-trophy" xlink:href="#i-trophy"/></svg>Awards</h2>
+          <ul>
+            <li>Q3 Top Agent Rockstar <span>Concentrix, 2025</span></li>
+            <li>Annual Top Performer <span>Concentrix, 2025</span></li>
+            <li>Q1 Top Agent Rockstar <span>Concentrix, 2025</span></li>
+          </ul>
+        </div>
+        <div>
+          <h2><svg class="ic"><use href="#i-cap" xlink:href="#i-cap"/></svg>Training & Education</h2>
+          <ul>
+            <li>HIPAA Compliance Training <span>2026</span></li>
+            <li>Introduction to Bookkeeping (TESDA) <span>2026</span></li>
+            <li>BA Political Science <span>AMA University</span></li>
+            <li>Senior High School (ABM Strand)<span>PWC of Davao</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="page" id="contact">
+    <div class="wrap">
+      <div class="contact-info">
+        <h2>Let's work together</h2>
+        <p>Looking for a reliable full-time Virtual Assistant? Send me a message and I'll get back to you.</p>
+        <a class="btn ghost" href="mailto:perezfmay@gmail.com?subject=Virtual%20Assistant%20Inquiry">Email me directly</a>
+        <dl class="details">
+          <div><svg class="ic"><use href="#i-mail" xlink:href="#i-mail"/></svg><span><dt>Email</dt><dd><a href="mailto:perezfmay@gmail.com">perezfmay@gmail.com</a></dd></span></div>
+          <div><svg class="ic"><use href="#i-phone" xlink:href="#i-phone"/></svg><span><dt>Phone</dt><dd><a href="tel:+639063886189">+63 906 388 6189</a></dd></span></div>
+          <div><svg class="ic"><use href="#i-link" xlink:href="#i-link"/></svg><span><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/frankie-may-perez-8a7902241/" target="_blank" rel="noopener">frankie-may-perez</a></dd></span></div>
+          <div><svg class="ic"><use href="#i-pin" xlink:href="#i-pin"/></svg><span><dt>Location</dt><dd>Davao City, Philippines</dd></span></div>
+        </dl>
+      </div>
+      <form id="contactForm">
+        <h3>Send a message</h3>
+        <div class="field"><label for="name">Name</label><input id="name" required></div>
+        <div class="field"><label for="email">Your email</label><input id="email" type="email" required></div>
+        <div class="field"><label for="msg">Message</label><textarea id="msg" rows="5" required></textarea></div>
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
+        <button class="btn" type="submit" id="sendBtn">Send message</button>
+        <p class="fine" id="formStatus" role="status">I usually reply within 1 to 2 days.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Frankie May Perez</span>
+    <span>Davao City, Philippines</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var pages = document.querySelectorAll('.page');
+  var links = document.querySelectorAll('nav a');
+
+  function show(id) {
+    var target = document.getElementById(id);
+    if (!target || !target.classList.contains('page')) id = 'home';
+    pages.forEach(function (p) { p.classList.toggle('active', p.id === id); });
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    e.preventDefault();
+    history.pushState(null, '', '#' + id);
+    show(id);
+  });
+
+  window.addEventListener('popstate', function () {
+    show(location.hash.slice(1) || 'home');
+  });
+
+  var SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var status = document.getElementById('formStatus');
+    var btn = document.getElementById('sendBtn');
+    if (SCRIPT_URL.indexOf('PASTE') === 0) {
+      var n = document.getElementById('name').value;
+      var em = document.getElementById('email').value;
+      var m = document.getElementById('msg').value;
+      status.textContent = 'Opening your email app...';
+      location.href = 'mailto:perezfmay@gmail.com?subject=' + encodeURIComponent('Message from ' + n) +
+        '&body=' + encodeURIComponent(m + '\n\nFrom: ' + n + ' (' + em + ')');
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending...';
+    var data = new URLSearchParams({
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('msg').value,
+      website: document.getElementById('website').value
+    });
+    fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () {
+        status.textContent = 'Thank you! Your message was sent. I will reply soon.';
+        document.getElementById('contactForm').reset();
+      })
+      .catch(function () {
+        status.textContent = 'Something went wrong. Please email me at perezfmay@gmail.com.';
+      })
+      .then(function () { btn.disabled = false; btn.textContent = 'Send message'; });
+  });
+
+  window.addEventListener('hashchange', function () {
+    show(location.hash.slice(1) || 'home');
+  });
+
+  show(location.hash.slice(1) || 'home');
+})();
+</script>
+
+</body>
+</html>
